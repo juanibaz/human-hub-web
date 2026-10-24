@@ -30,14 +30,16 @@ if (window.gsap && window.ScrollTrigger && !reduce) {
   gsap.timeline({ defaults: { ease: 'expo.out' } })
     .from('.hero__bg img', { scale: 1.25, duration: 2.4 }, 0)
     .from('.hero__title .w > span', { yPercent: 110, duration: 1.4, stagger: 0.08 }, 0.2)
-    .from('.hero__eyebrow, .hero__foot, .nav', { y: 24, opacity: 0, duration: 1.2, stagger: 0.12 }, 0.7);
+    .from('.hero__eyebrow, .hero__foot', { y: 24, opacity: 0, duration: 1.2, stagger: 0.12 }, 0.7)
+    .from('.nav', { opacity: 0, duration: 1.2, clearProps: 'opacity' }, 0.9); // never transform .nav: it breaks its fixed mobile menu
   gsap.to('.hero__inner', { yPercent: -18, opacity: 0.2, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
 
-  // Generic fade-up reveals.
+  // Generic fade-up reveals (hidden up front so they don't flash before entering).
+  gsap.set('[data-reveal]', { y: 48, opacity: 0 });
   ScrollTrigger.batch('[data-reveal]', {
     start: 'top 88%',
     once: true,
-    onEnter: (els) => gsap.from(els, { y: 48, opacity: 0, duration: 1.1, ease: 'expo.out', stagger: 0.08 }),
+    onEnter: (els) => gsap.to(els, { y: 0, opacity: 1, duration: 1.1, ease: 'expo.out', stagger: 0.08 }),
   });
 
   // Image clip reveals.
@@ -53,6 +55,7 @@ if (window.gsap && window.ScrollTrigger && !reduce) {
   // Counters.
   gsap.utils.toArray('[data-count]').forEach((el) => {
     const to = +el.dataset.count, obj = { v: +(el.dataset.from || 0) };
+    el.textContent = obj.v;
     gsap.to(obj, { v: to, duration: 2, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%' }, onUpdate: () => (el.textContent = Math.round(obj.v)) });
   });
 
@@ -78,11 +81,16 @@ if (window.gsap && window.ScrollTrigger && !reduce) {
   mm.add('(min-width: 1001px)', () => {
     // Stacked service cards: each card recedes as the next one covers it.
     const cards = gsap.utils.toArray('.svc');
+    // Cards taller than the viewport stick by their bottom edge, so their last lines stay readable.
+    const fitTops = () => cards.forEach((c, i) => (c.style.top = Math.min(110 + i * 14, innerHeight - c.offsetHeight - 24) + 'px'));
+    fitTops();
+    ScrollTrigger.addEventListener('refreshInit', fitTops);
     cards.forEach((card, i) => {
       const next = cards[i + 1];
       if (!next) return;
       gsap.to(card, { scale: 0.94, ease: 'none', scrollTrigger: { trigger: next, start: 'top bottom', end: 'top 30%', scrub: true } });
     });
+    return () => { ScrollTrigger.removeEventListener('refreshInit', fitTops); cards.forEach((c) => (c.style.top = '')); };
   });
   mm.add('(min-width: 821px)', () => {
     // Pinned horizontal gallery.
