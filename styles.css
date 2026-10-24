@@ -63,22 +63,16 @@ strong { font-weight: 800; }
 
 /* ---------- Hero: a sheet of workshop photographs with one text cell ---------- */
 .sheet {
-  --sheet-h: min(100svh, 62vw);
+  --sheet-h: min(100svh, 58vw); /* short enough that every column (photos at their own ratio) reaches the bottom */
   --colw: calc((100vw - 2 * var(--m) - 60px) / 6);
   display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; align-items: start;
   height: var(--sheet-h); overflow: hidden; padding-inline: var(--m);
 }
 .sheet__col { display: flex; flex-direction: column; gap: 12px; }
-.sheet__col--b { margin-top: -90px; }
-.sheet__col--c { margin-top: -20px; }
-.sheet__col--d { margin-top: -70px; }
 .sheet__mid { grid-column: span 2; display: flex; flex-direction: column; gap: 12px; margin-top: calc(var(--sheet-h) * 0.28 - 300px - 12px); }
 .frame { display: flex; flex-direction: column; min-width: 0; background: var(--surface); }
-.frame img { width: 100%; object-fit: cover; }
-.f-port img { aspect-ratio: 3 / 4; }
-.f-tall img { aspect-ratio: 2 / 3; }
-.f-sq img { aspect-ratio: 1; }
-.f-wide img { aspect-ratio: 4 / 3; }
+/* Photos keep their own ratio and every column starts at the top edge: only the bottom of the sheet crops, so no head is cut. */
+.frame img { width: 100%; }
 .strip { height: 28px; padding: 0 10px; font-size: var(--t-sm); line-height: 28px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff; }
 .s1 { background: var(--green); }
 .s2 { background: var(--accent); }
@@ -182,7 +176,7 @@ details[open] summary { margin-bottom: 12px; }
 .strip-row { overflow-x: auto; scrollbar-width: none; }
 .strip-row::-webkit-scrollbar { display: none; }
 .strip-row__track { display: flex; gap: 8px; width: max-content; }
-.strip-row img { height: 150px; width: auto; object-fit: cover; }
+.strip-row img { height: 150px; width: auto; object-fit: cover; object-position: 50% 15%; }
 .r34 { aspect-ratio: 3 / 4; }
 .r11 { aspect-ratio: 1; }
 .r32 { aspect-ratio: 3 / 2; }
@@ -246,7 +240,7 @@ details[open] summary { margin-bottom: 12px; }
   .panel__lead { font-size: var(--t-lead); }
   .panel .btn { align-self: stretch; }
   /* two columns; the left one starts lower so the rows never line up */
-  .sheet__col, .sheet__col--b, .sheet__col--c, .sheet__col--d { gap: 8px; margin-top: 0; }
+  .sheet__col { gap: 8px; }
   .sheet__col:first-child, .sheet__col--c { padding-top: 60px; }
   .ph-hide { display: none; }
 

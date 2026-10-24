@@ -1,7 +1,6 @@
 // Everything on the page is visible without this file; it adds the live finder, the contact
 // message, the clock and the motion layer.
 document.documentElement.classList.add('js');
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // The live thing: pick the ámbito where the challenge is, see the services that address it.
 const tabs = [...document.querySelectorAll('.tab')];
@@ -70,13 +69,3 @@ document.querySelectorAll('.bands').forEach((p) => p.querySelectorAll('.band').f
 document.querySelectorAll('.spines li').forEach((li, i) => li.style.setProperty('--d', `${i * 25}ms`));
 document.querySelectorAll('[data-in], .shutter, .row, .spines, .bands').forEach((el) => seen.observe(el));
 
-if (!reduce && window.gsap && window.ScrollTrigger) {
-  gsap.registerPlugin(ScrollTrigger);
-
-  // The hero sheet's columns drift upward at slightly different speeds as it scrolls away.
-  gsap.matchMedia().add('(min-width: 901px)', () => {
-    document.querySelectorAll('[data-drift]').forEach((col) => {
-      gsap.to(col, { yPercent: parseFloat(col.dataset.drift) * 100, ease: 'none', scrollTrigger: { trigger: '.sheet', start: 'top top', end: 'bottom top', scrub: true } });
-    });
-  });
-}
