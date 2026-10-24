@@ -1,121 +1,82 @@
-// Nav: solid after hero, hides on scroll down, mobile toggle.
-const nav = document.getElementById('nav');
-const toggle = nav.querySelector('.nav__toggle');
-const menuLinks = nav.querySelectorAll('.nav__menu a');
-let lastY = 0;
-addEventListener('scroll', () => {
-  const y = scrollY;
-  nav.classList.toggle('is-solid', y > innerHeight * 0.6);
-  nav.classList.toggle('is-hidden', y > lastY && y > innerHeight && !nav.classList.contains('is-open'));
-  lastY = y;
-}, { passive: true });
-const setMenu = (open, returnFocus) => {
-  nav.classList.toggle('is-open', open);
-  toggle.setAttribute('aria-expanded', open);
-  toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-  document.body.style.overflow = open ? 'hidden' : '';
-  if (open) menuLinks[0].focus();
-  else if (returnFocus) toggle.focus();
-};
-toggle.addEventListener('click', () => setMenu(!nav.classList.contains('is-open')));
-menuLinks.forEach((a) => a.addEventListener('click', () => setMenu(false)));
-addEventListener('keydown', (e) => e.key === 'Escape' && nav.classList.contains('is-open') && setMenu(false, true));
-
-// Animations: everything is visible by default; GSAP only hides what it is about to reveal,
-// so the page still works without JS or without the CDN.
+// Everything on the page is visible without this file; it adds the live finder, the contact
+// message, the clock and the motion layer.
+document.documentElement.classList.add('js');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (window.gsap && window.ScrollTrigger && reduce) {
-  // Reduced motion: no movement, just a short cross-fade as sections arrive.
+
+// The live thing: pick the ámbito where the challenge is, see the services that address it.
+const tabs = [...document.querySelectorAll('.tab')];
+const panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')));
+const select = (i, focus) => {
+  tabs.forEach((t, j) => {
+    const on = i === j;
+    t.setAttribute('aria-selected', on);
+    t.tabIndex = on ? 0 : -1;
+    panels[j].hidden = !on;
+  });
+  panels[i].classList.add('is-in');
+  if (focus) tabs[i].focus();
+};
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => select(i));
+  t.addEventListener('keydown', (e) => {
+    const step = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+    if (step) { e.preventDefault(); select((i + step + tabs.length) % tabs.length, true); }
+    if (e.key === 'Home') { e.preventDefault(); select(0, true); }
+    if (e.key === 'End') { e.preventDefault(); select(tabs.length - 1, true); }
+  });
+});
+if (tabs.length) select(0);
+
+// Contact: no form backend, so the bar writes the message, copies it and opens an Instagram DM.
+const bar = document.getElementById('bar');
+const note = document.getElementById('bar-msg');
+bar.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = document.getElementById('f-name').value.trim();
+  const org = document.getElementById('f-org').value.trim();
+  const topic = document.querySelector('.tab[aria-selected="true"]')?.firstChild.textContent.trim().toLowerCase();
+  const msg = `Hola Human Hub${name ? `, soy ${name}` : ''}${org ? ` de ${org}` : ''}. Me gustaría conversar${topic ? ` sobre ${topic}` : ''}.`;
+  let copied = false;
+  try { await navigator.clipboard.writeText(msg); copied = true; } catch {}
+  note.textContent = copied ? 'Mensaje copiado: pégalo en el chat de Instagram.' : `Copia este mensaje: «${msg}»`;
+  window.open('https://ig.me/m/humanhubconsultores', '_blank', 'noopener');
+});
+
+// Footer: the time in Chile, live.
+const clock = document.getElementById('clock');
+const fmt = new Intl.DateTimeFormat('es-CL', { timeZone: 'America/Santiago', hour: '2-digit', minute: '2-digit' });
+const tick = () => { clock.textContent = fmt.format(new Date()); clock.dateTime = clock.textContent; };
+tick();
+setInterval(tick, 20000);
+
+// Photo strip: duplicated once so the drift loops without a seam; paused while off screen.
+const strip = document.querySelector('.strip-row');
+const track = strip.querySelector('.strip-row__track');
+track.append(...[...track.children].map((n) => n.cloneNode(true)));
+new IntersectionObserver(([en]) => strip.classList.toggle('is-paused', !en.isIntersecting)).observe(strip);
+
+// Entrances: each section's parts arrive in reading order, once.
+const seen = new IntersectionObserver((entries) => {
+  entries.forEach((en) => {
+    if (!en.isIntersecting) return;
+    en.target.classList.add('is-in');
+    seen.unobserve(en.target);
+  });
+}, { rootMargin: '0px 0px -12% 0px' });
+document.querySelectorAll('section').forEach((s) => {
+  s.querySelectorAll('[data-in]').forEach((el, i) => el.style.setProperty('--d', `${i * 80}ms`));
+});
+document.querySelectorAll('.bands').forEach((p) => p.querySelectorAll('.band').forEach((b, i) => b.style.setProperty('--d', `${i * 70}ms`)));
+document.querySelectorAll('.spines li').forEach((li, i) => li.style.setProperty('--d', `${i * 25}ms`));
+document.querySelectorAll('[data-in], .shutter, .row, .spines, .bands').forEach((el) => seen.observe(el));
+
+if (!reduce && window.gsap && window.ScrollTrigger) {
   gsap.registerPlugin(ScrollTrigger);
-  gsap.set('[data-reveal]', { opacity: 0 });
-  ScrollTrigger.batch('[data-reveal]', { start: 'top 92%', once: true, onEnter: (els) => gsap.to(els, { opacity: 1, duration: 0.4 }) });
-} else if (window.gsap && window.ScrollTrigger) {
-  gsap.registerPlugin(ScrollTrigger);
-  const mm = gsap.matchMedia();
 
-  // Created first: its pin spacer shifts everything below it, and ScrollTriggers refresh in
-  // creation order, so the later ones (Hubers, Clientes, CTA) must measure after it.
-  mm.add('(min-width: 821px)', () => {
-    // Pinned horizontal gallery.
-    const track = document.querySelector('.gallery__track');
-    gsap.to(track, {
-      x: () => -(track.scrollWidth - innerWidth),
-      ease: 'none',
-      scrollTrigger: { trigger: '.gallery', pin: true, scrub: 0.6, start: 'top top', end: () => '+=' + (track.scrollWidth - innerWidth), invalidateOnRefresh: true },
+  // The hero sheet's columns drift upward at slightly different speeds as it scrolls away.
+  gsap.matchMedia().add('(min-width: 901px)', () => {
+    document.querySelectorAll('[data-drift]').forEach((col) => {
+      gsap.to(col, { yPercent: parseFloat(col.dataset.drift) * 100, ease: 'none', scrollTrigger: { trigger: '.sheet', start: 'top top', end: 'bottom top', scrub: true } });
     });
   });
-
-  // Hero: split title into masked words.
-  const title = document.querySelector('[data-split]');
-  title.innerHTML = title.innerHTML.split(' ').map((w) => `<span class="w"><span>${w}</span></span>`).join(' ');
-  gsap.timeline({ defaults: { ease: 'expo.out' } })
-    .from('.hero__bg img', { scale: 1.25, duration: 2.4 }, 0)
-    .from('.hero__title .w > span', { yPercent: 110, duration: 1.4, stagger: 0.08 }, 0.2)
-    .from('.hero__foot', { y: 24, opacity: 0, duration: 1.2 }, 0.7)
-    .from('.nav', { opacity: 0, duration: 1.2, clearProps: 'opacity' }, 0.9); // never transform .nav: it breaks its fixed mobile menu
-  gsap.to('.hero__inner', { yPercent: -18, opacity: 0.2, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-
-  // Generic fade-up reveals (hidden up front so they don't flash before entering).
-  gsap.set('[data-reveal]', { y: 48, opacity: 0 });
-  ScrollTrigger.batch('[data-reveal]', {
-    start: 'top 88%',
-    once: true,
-    onEnter: (els) => gsap.to(els, { y: 0, opacity: 1, duration: 1.1, ease: 'expo.out', stagger: 0.08 }),
-  });
-
-  // Image clip reveals.
-  gsap.utils.toArray('[data-clip]').forEach((el) => {
-    gsap.from(el, { clipPath: 'inset(18% 18% 18% 18% round 20px)', duration: 1.6, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
-  });
-
-  // Parallax inside clipped frames.
-  gsap.utils.toArray('[data-speed]').forEach((img) => {
-    gsap.to(img, { yPercent: parseFloat(img.dataset.speed) * 100, ease: 'none', scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
-  });
-
-  // Counters.
-  gsap.utils.toArray('[data-count]').forEach((el) => {
-    const to = +el.dataset.count, obj = { v: +(el.dataset.from || 0) };
-    el.textContent = obj.v;
-    gsap.to(obj, { v: to, duration: 2, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%' }, onUpdate: () => (el.textContent = Math.round(obj.v)) });
-  });
-
-  // Manifesto: words light up as you scroll.
-  const text = document.querySelector('[data-words]');
-  const words = [];
-  text.childNodes.forEach((node) => {
-    const frag = document.createDocumentFragment();
-    const parts = node.textContent.split(/(\s+)/);
-    parts.forEach((p) => {
-      if (!p.trim()) return frag.append(p);
-      const s = document.createElement(node.nodeType === 1 ? 'strong' : 'span');
-      s.textContent = p; words.push(s); frag.append(s);
-    });
-    node.replaceWith(frag);
-  });
-  gsap.from(words, { opacity: 0.15, stagger: 0.05, ease: 'none', scrollTrigger: { trigger: text, start: 'top 80%', end: 'bottom 45%', scrub: true } });
-
-  // Why cards: tilt in.
-  gsap.from('.why__card', { y: 80, rotate: (i) => (i % 2 ? 3 : -3), opacity: 0, duration: 1.2, ease: 'expo.out', stagger: 0.1, scrollTrigger: { trigger: '.why__grid', start: 'top 85%' } });
-
-  mm.add('(min-width: 1001px)', () => {
-    // Stacked service cards: each card recedes as the next one covers it.
-    const cards = gsap.utils.toArray('.svc');
-    // Cards taller than the viewport stick by their bottom edge, so their last lines stay readable.
-    // All heights are read before any top is written, so layout is computed once.
-    const fitTops = () => {
-      const heights = cards.map((c) => c.offsetHeight);
-      cards.forEach((c, i) => (c.style.top = Math.min(110 + i * 14, innerHeight - heights[i] - 24) + 'px'));
-    };
-    fitTops();
-    ScrollTrigger.addEventListener('refreshInit', fitTops);
-    cards.forEach((card, i) => {
-      const next = cards[i + 1];
-      if (!next) return;
-      gsap.to(card, { scale: 0.94, ease: 'none', scrollTrigger: { trigger: next, start: 'top bottom', end: 'top 30%', scrub: true } });
-    });
-    return () => { ScrollTrigger.removeEventListener('refreshInit', fitTops); cards.forEach((c) => (c.style.top = '')); };
-  });
-
-  addEventListener('load', () => ScrollTrigger.refresh());
 }
