@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
   <a class="skip" href="#nosotros">Saltar al contenido</a>
@@ -36,9 +36,7 @@
     <!-- HERO -->
     <section class="hero" id="top">
       <div class="hero__bg" aria-hidden="true"><img src="assets/hero-bg.webp" alt=""></div>
-      <div class="hero__aurora" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="hero__inner wrap">
-        <p class="eyebrow hero__eyebrow">Human Hub Consulting · Desde 2018</p>
         <h1 class="hero__title" data-split>Sé la mejor versión de ti&nbsp;mismo.</h1>
         <div class="hero__foot">
           <p class="hero__lead">Consultoría estratégica centrada en las personas. Acompañamos a organizaciones que quieren ser espacios de trabajo, colaboración y creación a escala humana.</p>
@@ -87,22 +85,18 @@
         <h2 class="h2" data-reveal>¿Por qué <span class="c-blue">Human&nbsp;Hub</span>?</h2>
         <ol class="why__grid">
           <li class="why__card why__card--1">
-            <span class="why__n">01</span>
             <h3>Socios estratégicos</h3>
             <p>Conocemos a nuestros clientes, su negocio y su industria. Nos convertimos en sus <strong>socios estratégicos a largo plazo</strong>.</p>
           </li>
           <li class="why__card why__card--2">
-            <span class="why__n">02</span>
             <h3>Promesa cumplida</h3>
             <p>Cumplimos la promesa de servicio, entregando <strong>procesos de desarrollo de personas</strong> permanentes en el tiempo.</p>
           </li>
           <li class="why__card why__card--3">
-            <span class="why__n">03</span>
             <h3>Hecho a medida</h3>
             <p>Nuestra metodología y profesionales <strong>se adaptan a las situaciones particulares</strong> de cada organización.</p>
           </li>
           <li class="why__card why__card--4">
-            <span class="why__n">04</span>
             <h3>Resultados que avalan</h3>
             <p>La experiencia e historia construida con nuestros clientes <strong>avalan los buenos resultados</strong> de los procesos.</p>
           </li>
@@ -116,12 +110,12 @@
       <div class="wrap">
         <h2 class="h2 h2--light" data-reveal>Podemos <span class="c-teal">apoyarte</span> en</h2>
         <ul class="areas__list">
-          <li data-reveal><span>01</span>Liderazgo y management</li>
-          <li data-reveal><span>02</span>Gestión del cambio</li>
-          <li data-reveal><span>03</span>Experiencia interna</li>
-          <li data-reveal><span>04</span>Gestión de indicadores</li>
-          <li data-reveal><span>05</span>Gestión del talento</li>
-          <li data-reveal><span>06</span>Estructura y procesos</li>
+          <li data-reveal>Liderazgo y management</li>
+          <li data-reveal>Gestión del cambio</li>
+          <li data-reveal>Experiencia interna</li>
+          <li data-reveal>Gestión de indicadores</li>
+          <li data-reveal>Gestión del talento</li>
+          <li data-reveal>Estructura y procesos</li>
         </ul>
       </div>
     </section>
@@ -224,7 +218,6 @@
     <section class="gallery" aria-label="Galería">
       <div class="gallery__track">
         <div class="gallery__intro">
-          <p class="eyebrow">En terreno</p>
           <h2 class="h2 h2--light">Abriendo conversaciones</h2>
         </div>
         <figure class="gallery__item gallery__item--wide"><img src="assets/hands.webp" alt="Manos moldeando una pieza de greda" loading="lazy"></figure>
@@ -254,10 +247,7 @@
     <!-- CLIENTES -->
     <section class="clients section" id="clientes">
       <div class="wrap"><h2 class="h2 h2--light" data-reveal>Han confiado en <span class="c-orange">nosotros</span>…</h2></div>
-      <div class="marquee" role="img" aria-label="Logos de clientes: Universidad de Santiago de Chile, Saval, Municipal de Santiago, NotCo, Banco Falabella, David del Curto, ISA Vías, Patagonia, Almasur Hoteles, Volvo, Falabella, Tottus, Family Shop, CMPC, Raven, Nuevo Pudahuel, Puerto San Antonio, El Mercurio, Grünenthal, TPS Valparaíso, Gildemeister, Spora, Factory, SKY, GAM, ISA Energía, MAVI UC">
-        <div class="marquee__row"><img src="assets/clients-a.webp" alt=""><img src="assets/clients-a.webp" alt=""></div>
-        <div class="marquee__row marquee__row--rev"><img src="assets/clients-b.webp" alt=""><img src="assets/clients-b.webp" alt=""></div>
-      </div>
+      <div class="wrap"><picture><source media="(max-width: 620px)" srcset="assets/clients-m.webp" width="900" height="1430"><img class="clients__logos" data-reveal src="assets/clients.webp" width="1600" height="745" loading="lazy" alt="Logos de clientes: Universidad de Santiago de Chile, Saval, Municipal de Santiago, NotCo, Banco Falabella, David del Curto, ISA Vías, Patagonia, Almasur Hoteles, Volvo, Falabella, Tottus, Family Shop, CMPC, Raven, Nuevo Pudahuel, Puerto San Antonio, El Mercurio, Grünenthal, TPS Valparaíso, Gildemeister, Spora, Factory, SKY, GAM, ISA Energía y MAVI UC"></picture></div>
     </section>
 
     <!-- CTA -->
@@ -282,6 +272,6 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="main.js?v=2"></script>
+  <script src="main.js?v=3"></script>
 </body>
 </html>

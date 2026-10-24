@@ -1,6 +1,7 @@
 // Nav: solid after hero, hides on scroll down, mobile toggle.
 const nav = document.getElementById('nav');
 const toggle = nav.querySelector('.nav__toggle');
+const menuLinks = nav.querySelectorAll('.nav__menu a');
 let lastY = 0;
 addEventListener('scroll', () => {
   const y = scrollY;
@@ -8,21 +9,41 @@ addEventListener('scroll', () => {
   nav.classList.toggle('is-hidden', y > lastY && y > innerHeight && !nav.classList.contains('is-open'));
   lastY = y;
 }, { passive: true });
-const setMenu = (open) => {
+const setMenu = (open, returnFocus) => {
   nav.classList.toggle('is-open', open);
   toggle.setAttribute('aria-expanded', open);
   toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
   document.body.style.overflow = open ? 'hidden' : '';
+  if (open) menuLinks[0].focus();
+  else if (returnFocus) toggle.focus();
 };
 toggle.addEventListener('click', () => setMenu(!nav.classList.contains('is-open')));
-nav.querySelectorAll('.nav__menu a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
-addEventListener('keydown', (e) => e.key === 'Escape' && setMenu(false));
+menuLinks.forEach((a) => a.addEventListener('click', () => setMenu(false)));
+addEventListener('keydown', (e) => e.key === 'Escape' && nav.classList.contains('is-open') && setMenu(false, true));
 
-// Animations: everything is visible by default; GSAP only animates *from* hidden states,
-// so the page still works without JS, without the CDN, or with reduced motion.
+// Animations: everything is visible by default; GSAP only hides what it is about to reveal,
+// so the page still works without JS or without the CDN.
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (window.gsap && window.ScrollTrigger && !reduce) {
+if (window.gsap && window.ScrollTrigger && reduce) {
+  // Reduced motion: no movement, just a short cross-fade as sections arrive.
   gsap.registerPlugin(ScrollTrigger);
+  gsap.set('[data-reveal]', { opacity: 0 });
+  ScrollTrigger.batch('[data-reveal]', { start: 'top 92%', once: true, onEnter: (els) => gsap.to(els, { opacity: 1, duration: 0.4 }) });
+} else if (window.gsap && window.ScrollTrigger) {
+  gsap.registerPlugin(ScrollTrigger);
+  const mm = gsap.matchMedia();
+
+  // Created first: its pin spacer shifts everything below it, and ScrollTriggers refresh in
+  // creation order, so the later ones (Hubers, Clientes, CTA) must measure after it.
+  mm.add('(min-width: 821px)', () => {
+    // Pinned horizontal gallery.
+    const track = document.querySelector('.gallery__track');
+    gsap.to(track, {
+      x: () => -(track.scrollWidth - innerWidth),
+      ease: 'none',
+      scrollTrigger: { trigger: '.gallery', pin: true, scrub: 0.6, start: 'top top', end: () => '+=' + (track.scrollWidth - innerWidth), invalidateOnRefresh: true },
+    });
+  });
 
   // Hero: split title into masked words.
   const title = document.querySelector('[data-split]');
@@ -30,7 +51,7 @@ if (window.gsap && window.ScrollTrigger && !reduce) {
   gsap.timeline({ defaults: { ease: 'expo.out' } })
     .from('.hero__bg img', { scale: 1.25, duration: 2.4 }, 0)
     .from('.hero__title .w > span', { yPercent: 110, duration: 1.4, stagger: 0.08 }, 0.2)
-    .from('.hero__eyebrow, .hero__foot', { y: 24, opacity: 0, duration: 1.2, stagger: 0.12 }, 0.7)
+    .from('.hero__foot', { y: 24, opacity: 0, duration: 1.2 }, 0.7)
     .from('.nav', { opacity: 0, duration: 1.2, clearProps: 'opacity' }, 0.9); // never transform .nav: it breaks its fixed mobile menu
   gsap.to('.hero__inner', { yPercent: -18, opacity: 0.2, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
 
@@ -77,12 +98,15 @@ if (window.gsap && window.ScrollTrigger && !reduce) {
   // Why cards: tilt in.
   gsap.from('.why__card', { y: 80, rotate: (i) => (i % 2 ? 3 : -3), opacity: 0, duration: 1.2, ease: 'expo.out', stagger: 0.1, scrollTrigger: { trigger: '.why__grid', start: 'top 85%' } });
 
-  const mm = gsap.matchMedia();
   mm.add('(min-width: 1001px)', () => {
     // Stacked service cards: each card recedes as the next one covers it.
     const cards = gsap.utils.toArray('.svc');
     // Cards taller than the viewport stick by their bottom edge, so their last lines stay readable.
-    const fitTops = () => cards.forEach((c, i) => (c.style.top = Math.min(110 + i * 14, innerHeight - c.offsetHeight - 24) + 'px'));
+    // All heights are read before any top is written, so layout is computed once.
+    const fitTops = () => {
+      const heights = cards.map((c) => c.offsetHeight);
+      cards.forEach((c, i) => (c.style.top = Math.min(110 + i * 14, innerHeight - heights[i] - 24) + 'px'));
+    };
     fitTops();
     ScrollTrigger.addEventListener('refreshInit', fitTops);
     cards.forEach((card, i) => {
@@ -91,15 +115,6 @@ if (window.gsap && window.ScrollTrigger && !reduce) {
       gsap.to(card, { scale: 0.94, ease: 'none', scrollTrigger: { trigger: next, start: 'top bottom', end: 'top 30%', scrub: true } });
     });
     return () => { ScrollTrigger.removeEventListener('refreshInit', fitTops); cards.forEach((c) => (c.style.top = '')); };
-  });
-  mm.add('(min-width: 821px)', () => {
-    // Pinned horizontal gallery.
-    const track = document.querySelector('.gallery__track');
-    gsap.to(track, {
-      x: () => -(track.scrollWidth - innerWidth),
-      ease: 'none',
-      scrollTrigger: { trigger: '.gallery', pin: true, scrub: 0.6, start: 'top top', end: () => '+=' + (track.scrollWidth - innerWidth), invalidateOnRefresh: true },
-    });
   });
 
   addEventListener('load', () => ScrollTrigger.refresh());
