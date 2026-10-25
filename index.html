@@ -3,317 +3,275 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Human Hub · Consultoría de capital humano</title>
-  <meta name="description" content="Human Hub es una consultora chilena de capital humano desde 2018: coaching ejecutivo, hunting y onboarding, consultoría en RRHH, offsites, experiencias con sentido y formación.">
+  <title>Human Hub Consulting · Consultoría estratégica centrada en las personas</title>
+  <meta name="description" content="Human Hub es una consultora de desarrollo del capital humano: coaching ejecutivo, hunting y onboarding, consultoría estratégica en RRHH, offsites, experiencias con sentido y formación organizacional.">
+  <meta property="og:title" content="Human Hub Consulting">
+  <meta property="og:description" content="Consultoría estratégica centrada en las personas. Sé la mejor versión de ti mismo.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Human Hub · Consultoría de capital humano">
-  <meta property="og:description" content="Ayudamos a personas y equipos a ser su mejor versión, desde 2018.">
   <meta property="og:url" content="https://juanibaz.github.io/human-hub-web/">
-  <meta property="og:image" content="https://juanibaz.github.io/human-hub-web/assets/hands.webp">
+  <meta property="og:image" content="https://juanibaz.github.io/human-hub-web/assets/hero-bg.webp">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/hh.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
-  <a class="skip" href="#hubers">Saltar al contenido</a>
+  <a class="skip" href="#nosotros">Saltar al contenido</a>
+
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__logo" aria-label="Human Hub, inicio"><img src="assets/logo.webp" alt="Human Hub" width="152" height="52"></a>
+    <button class="nav__toggle" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú"><span></span><span></span></button>
+    <nav class="nav__menu" id="menu">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#hubers">Hubers</a>
+      <a href="#clientes">Clientes</a>
+      <a href="#contacto" class="btn btn--light btn--sm">Conversemos</a>
+    </nav>
+  </header>
 
   <main>
-    <!-- HERO: a sheet of the Hubers' workshop photographs with one text cell -->
-    <section class="sheet" aria-label="Presentación">
-      <div class="sheet__col">
-        <figure class="frame"><img src="assets/g3.webp" width="302" height="402" alt="Facilitadora dirigiendo una sesión"><figcaption class="strip s1">Facilitación en sala</figcaption></figure>
-        <figure class="frame"><img src="assets/hands.webp" width="1600" height="1067" alt="Manos moldeando una pieza de greda"><figcaption class="strip s2">Taller de greda</figcaption></figure>
-        <figure class="frame"><img src="assets/g6.webp" width="297" height="395" alt="Trabajo colaborativo con papel y tablet"><figcaption class="strip s3">Trabajo colaborativo</figcaption></figure>
-      </div>
-      <div class="sheet__col sheet__col--b">
-        <figure class="frame"><img src="assets/founders.webp" width="463" height="346" alt="Jaime Cabrera Carmine y Marco Antonio Abarca, fundadores de Human Hub"><figcaption class="strip s4">Jaime Cabrera y Marco Antonio Abarca</figcaption></figure>
-        <figure class="frame"><img src="assets/g1.webp" width="307" height="410" alt="Manos de un equipo armando una estructura con bloques"><figcaption class="strip s1">Construir en equipo</figcaption></figure>
-        <figure class="frame"><img src="assets/pomaire-chanchito.webp" width="1100" height="825" alt="Chanchitos de greda frente a un taller" loading="lazy"><figcaption class="strip s2">Chanchitos de greda, Pomaire</figcaption></figure>
-        <figure class="frame ph-hide"><img src="assets/g2.webp" width="302" height="402" alt="Persona entregando una tarjeta escrita" loading="lazy"><figcaption class="strip s3">Dinámica con tarjetas</figcaption></figure>
-      </div>
-
-      <div class="sheet__mid">
-        <p class="tagline">Abriendo conversaciones</p>
-        <div class="panel">
-          <h1 class="panel__title">Human Hub</h1>
-          <p class="panel__lead">Consultoría de capital humano: ayudamos a personas y equipos a ser su mejor versión, desde 2018.</p>
-          <a class="btn" href="#contacto">Conversemos</a>
-          <nav class="panel__nav" aria-label="Secciones">
-            <a href="#servicios">Servicios</a>
-            <a href="#clientes">Clientes</a>
-            <a href="#hubers">Hubers</a>
-          </nav>
-        </div>
-        <a class="fact-tile" href="#clientes">27 organizaciones han confiado en nosotros</a>
-      </div>
-
-      <div class="sheet__col sheet__col--c">
-        <figure class="frame"><img src="assets/blocks.webp" width="768" height="1024" alt="Equipo levantando una torre de bloques de colores"><figcaption class="strip s3">Torre de bloques</figcaption></figure>
-        <figure class="frame"><img src="assets/g7.webp" width="524" height="393" alt="Equipo abrazado en círculo en la playa"><figcaption class="strip s4">Offsite en la playa</figcaption></figure>
-        <figure class="frame"><img src="assets/g4.webp" width="264" height="395" alt="Dos participantes muestran sus manos cubiertas de greda" loading="lazy"><figcaption class="strip s1">Manos de greda</figcaption></figure>
-        <figure class="frame ph-hide"><img src="assets/pomaire-artesania.webp" width="1100" height="733" alt="Maceteros y cántaros de greda apilados bajo un techo de madera" loading="lazy"><figcaption class="strip s2">Taller de alfarería, Pomaire</figcaption></figure>
-      </div>
-      <div class="sheet__col sheet__col--d">
-        <figure class="frame"><img src="assets/pomaire-cantaros.webp" width="733" height="1100" alt="Cántaros de greda junto a un muro blanco"><figcaption class="strip s2">Cántaros de greda, Pomaire</figcaption></figure>
-        <figure class="frame"><img src="assets/g5.webp" width="360" height="480" alt="Participantes trabajando sobre un papelógrafo" loading="lazy"><figcaption class="strip s3">Diseño en papelógrafo</figcaption></figure>
-        <figure class="frame"><img src="assets/pomaire-artesano.webp" width="1100" height="692" alt="Artesano trabajando la greda en una mesa al aire libre" loading="lazy"><figcaption class="strip s4">Artesano de la greda, Pomaire</figcaption></figure>
-      </div>
-    </section>
-
-    <!-- ABOUT: wide photo, colour tile, facts -->
-    <section class="about wrap" id="hubers">
-      <h2 class="h2" data-in>Somos Hubers</h2>
-      <p class="about__lead" data-in>Consultores y coaches que trabajaron años dentro de las empresas que hoy acompañamos. Con más de 20 años de vida corporativa, en 2018 dimos vida a Human&nbsp;Hub.</p>
-      <div class="about__tiles">
-        <figure class="about__photo shutter">
-          <img src="assets/team.webp" width="980" height="560" alt="El equipo de Human Hub celebrando alrededor de una mesa con piezas de greda" loading="lazy">
-          <figcaption class="about__note">Diseñamos e implementamos proyectos integrales de desarrollo del capital humano, con un servicio técnico, eficiente y confiable, y relaciones honestas y abiertas con quienes confían en&nbsp;nosotros.</figcaption>
-        </figure>
-        <div class="about__side">
-          <div class="about__mark"><img src="assets/hh.webp" width="400" height="340" alt="" loading="lazy"></div>
-          <dl class="facts" data-in>
-            <div><dt>Fundación</dt><dd>2018</dd></div>
-            <div><dt>Experiencia</dt><dd>Más de 20 años</dd></div>
-            <div><dt>Servicios</dt><dd>6 líneas</dd></div>
-            <div><dt>Clientes</dt><dd>27 organizaciones</dd></div>
-          </dl>
-        </div>
-      </div>
-    </section>
-
-    <!-- INTRO: lead line over four columns -->
-    <section class="intro wrap" aria-labelledby="por-que">
-      <p class="intro__lead" data-in>Human Hub es una forma de entender el trabajo: en lógica de conexión neuronal, junto a organizaciones que quieren ser espacios de colaboración y creación a escala humana.</p>
-      <h2 class="h2 intro__title" id="por-que" data-in>Por qué Human Hub</h2>
-      <div class="intro__cols">
-        <p data-in><strong>Socios de largo plazo.</strong> Conocemos a nuestros clientes, su negocio y su industria. No llegamos con una receta: primero entendemos cómo se vive el trabajo en cada organización y desde ahí nos convertimos en socios estratégicos que acompañan sus decisiones sobre personas en el tiempo.</p>
-        <p data-in><strong>Procesos que permanecen.</strong> Cumplimos la promesa de servicio con procesos de desarrollo de personas que siguen funcionando cuando el consultor ya no está. Buscamos fortalecer la autonomía interna de los equipos con soluciones sostenibles y realistas, construidas sobre evidencia y alineadas con los objetivos definidos.</p>
-        <p data-in><strong>Hecho a medida.</strong> Nuestra metodología y nuestros profesionales se adaptan a la situación particular de cada organización. Cada intervención se diseña cuidando el contexto, la identidad organizacional y el impacto que se busca, porque ningún equipo enfrenta exactamente el mismo desafío.</p>
-        <p data-in><strong>Resultados con historia.</strong> La experiencia construida junto a nuestros clientes avala los buenos resultados de los procesos. Cada Huber trabajó directamente en los ámbitos que hoy acompaña, en empresas de distintos rubros de Chile y Latinoamérica, y eso nos permite conectar de forma auténtica, práctica y estratégica.</p>
-      </div>
-    </section>
-
-    <!-- LIST: the live thing — pick where the challenge is, see which services address it -->
-    <section class="finder wrap" aria-labelledby="finder-title">
-      <div class="finder__head">
-        <h2 class="h2" id="finder-title" data-in>¿Dónde está tu desafío?</h2>
-        <a class="btn" href="#contacto">Conversemos</a>
-      </div>
-      <div class="finder__body">
-        <div class="tabs" role="tablist" aria-label="Ámbitos">
-          <button class="tab" role="tab" id="t-lid" aria-controls="p-lid" aria-selected="true">Liderazgo y management<small>3 servicios</small></button>
-          <button class="tab" role="tab" id="t-cam" aria-controls="p-cam" aria-selected="false" tabindex="-1">Gestión del cambio<small>3 servicios</small></button>
-          <button class="tab" role="tab" id="t-exp" aria-controls="p-exp" aria-selected="false" tabindex="-1">Experiencia interna<small>3 servicios</small></button>
-          <button class="tab" role="tab" id="t-ind" aria-controls="p-ind" aria-selected="false" tabindex="-1">Gestión de indicadores<small>2 servicios</small></button>
-          <button class="tab" role="tab" id="t-tal" aria-controls="p-tal" aria-selected="false" tabindex="-1">Gestión del talento<small>3 servicios</small></button>
-          <button class="tab" role="tab" id="t-est" aria-controls="p-est" aria-selected="false" tabindex="-1">Estructura y procesos<small>2 servicios</small></button>
-        </div>
-        <div class="panels">
-          <div class="bands" role="tabpanel" id="p-lid" aria-labelledby="t-lid">
-            <p class="bands__name">Liderazgo y management</p>
-            <a class="band" href="#svc-coaching"><span class="band__t">Coaching ejecutivo y de liderazgo<small>Procesos para descubrir la mejor versión de cada líder.</small></span><span class="band__who">Líderes y ejecutivos</span><img src="assets/ico-coaching.webp" alt="" width="300" height="284" loading="lazy"></a>
-            <a class="band" href="#svc-formacion"><span class="band__t">Formación y aprendizaje<small>Aprendizaje con Modelo de Transferencia, aplicado al trabajo.</small></span><span class="band__who">Personas y equipos</span><img src="assets/ico-formacion.webp" alt="" width="296" height="264" loading="lazy"></a>
-            <a class="band" href="#svc-offsite"><span class="band__t">Offsite estratégicos<small>Espacios fuera de la oficina para planificar y alinear.</small></span><span class="band__who">Equipos directivos</span><img src="assets/ico-offsite.webp" alt="" width="300" height="283" loading="lazy"></a>
-          </div>
-          <div class="bands" role="tabpanel" id="p-cam" aria-labelledby="t-cam">
-            <p class="bands__name">Gestión del cambio</p>
-            <a class="band" href="#svc-consultoria"><span class="band__t">Consultoría estratégica en RRHH<small>Intervenciones sobre evidencia, que fortalecen la autonomía interna.</small></span><span class="band__who">Organizaciones</span><img src="assets/ico-consultoria.webp" alt="" width="300" height="283" loading="lazy"></a>
-            <a class="band" href="#svc-offsite"><span class="band__t">Offsite estratégicos<small>Espacios fuera de la oficina para planificar y alinear.</small></span><span class="band__who">Equipos directivos</span><img src="assets/ico-offsite.webp" alt="" width="300" height="283" loading="lazy"></a>
-            <a class="band" href="#svc-experiencias"><span class="band__t">Experiencias con sentido<small>Actividades lúdicas y con propósito para vivir los valores.</small></span><span class="band__who">Equipos completos</span><img src="assets/ico-experiencias.webp" alt="" width="281" height="244" loading="lazy"></a>
-          </div>
-          <div class="bands" role="tabpanel" id="p-exp" aria-labelledby="t-exp">
-            <p class="bands__name">Experiencia interna</p>
-            <a class="band" href="#svc-experiencias"><span class="band__t">Experiencias con sentido<small>Actividades lúdicas y con propósito para vivir los valores.</small></span><span class="band__who">Equipos completos</span><img src="assets/ico-experiencias.webp" alt="" width="281" height="244" loading="lazy"></a>
-            <a class="band" href="#svc-consultoria"><span class="band__t">Consultoría estratégica en RRHH<small>Intervenciones sobre evidencia, que fortalecen la autonomía interna.</small></span><span class="band__who">Organizaciones</span><img src="assets/ico-consultoria.webp" alt="" width="300" height="283" loading="lazy"></a>
-            <a class="band" href="#svc-formacion"><span class="band__t">Formación y aprendizaje<small>Aprendizaje con Modelo de Transferencia, aplicado al trabajo.</small></span><span class="band__who">Personas y equipos</span><img src="assets/ico-formacion.webp" alt="" width="296" height="264" loading="lazy"></a>
-          </div>
-          <div class="bands" role="tabpanel" id="p-ind" aria-labelledby="t-ind">
-            <p class="bands__name">Gestión de indicadores</p>
-            <a class="band" href="#svc-consultoria"><span class="band__t">Consultoría estratégica en RRHH<small>Intervenciones sobre evidencia, que fortalecen la autonomía interna.</small></span><span class="band__who">Organizaciones</span><img src="assets/ico-consultoria.webp" alt="" width="300" height="283" loading="lazy"></a>
-            <a class="band" href="#svc-offsite"><span class="band__t">Offsite estratégicos<small>Planificación estratégica con el equipo directivo.</small></span><span class="band__who">Equipos directivos</span><img src="assets/ico-offsite.webp" alt="" width="300" height="283" loading="lazy"></a>
-          </div>
-          <div class="bands" role="tabpanel" id="p-tal" aria-labelledby="t-tal">
-            <p class="bands__name">Gestión del talento</p>
-            <a class="band" href="#svc-hunting"><span class="band__t">Hunting y onboarding<small>Búsqueda, selección y aterrizaje de talento, con Talent Hub.</small></span><span class="band__who">Nuevos líderes</span><img src="assets/ico-hunting.webp" alt="" width="278" height="278" loading="lazy"></a>
-            <a class="band" href="#svc-coaching"><span class="band__t">Coaching ejecutivo y de liderazgo<small>Procesos para descubrir la mejor versión de cada líder.</small></span><span class="band__who">Líderes y ejecutivos</span><img src="assets/ico-coaching.webp" alt="" width="300" height="284" loading="lazy"></a>
-            <a class="band" href="#svc-formacion"><span class="band__t">Formación y aprendizaje<small>Aprendizaje con Modelo de Transferencia, aplicado al trabajo.</small></span><span class="band__who">Personas y equipos</span><img src="assets/ico-formacion.webp" alt="" width="296" height="264" loading="lazy"></a>
-          </div>
-          <div class="bands" role="tabpanel" id="p-est" aria-labelledby="t-est">
-            <p class="bands__name">Estructura y procesos</p>
-            <a class="band" href="#svc-consultoria"><span class="band__t">Consultoría estratégica en RRHH<small>Intervenciones sobre evidencia, que fortalecen la autonomía interna.</small></span><span class="band__who">Organizaciones</span><img src="assets/ico-consultoria.webp" alt="" width="300" height="283" loading="lazy"></a>
-            <a class="band" href="#svc-offsite"><span class="band__t">Offsite estratégicos<small>Alineamientos organizacionales con el equipo directivo.</small></span><span class="band__who">Equipos directivos</span><img src="assets/ico-offsite.webp" alt="" width="300" height="283" loading="lazy"></a>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero__bg" aria-hidden="true"><img src="assets/hero-bg.webp" alt=""></div>
+      <div class="hero__inner wrap">
+        <h1 class="hero__title" data-split>Sé la mejor versión de ti&nbsp;mismo.</h1>
+        <div class="hero__foot">
+          <p class="hero__lead">Consultoría estratégica centrada en las personas. Acompañamos a organizaciones que quieren ser espacios de trabajo, colaboración y creación a escala humana.</p>
+          <div class="hero__ctas">
+            <a href="#servicios" class="btn btn--light">Nuestros servicios</a>
+            <a href="#contacto" class="btn btn--ghost">Abramos una conversación</a>
           </div>
         </div>
       </div>
+      <a href="#nosotros" class="hero__scroll" aria-label="Bajar"><span></span></a>
     </section>
 
-    <!-- FEATURES: statement cell, dark rows -->
-    <section class="services" id="servicios" aria-labelledby="svc-title">
-      <div class="services__cell">
-        <h2 class="services__title" id="svc-title" data-in><span>Seis formas</span><span>de acompañar</span></h2>
-        <div class="services__foot" data-in>
-          <p>Cada intervención se diseña a medida, cuidando el contexto y la identidad de la organización.</p>
-          <a class="btn" href="#contacto">Conversemos</a>
+    <!-- NOSOTROS -->
+    <section class="about section" id="nosotros">
+      <div class="wrap about__grid">
+        <h2 class="about__title" data-reveal>Consultoría <em class="c-red">estratégica</em> centrada en las&nbsp;personas</h2>
+        <div class="about__body">
+          <p data-reveal>Con más de <strong>20 años de experiencia</strong> en consultoría y vida corporativa, en 2018 dimos vida a Human Hub como una respuesta a los nuevos desafíos del mundo del trabajo y la forma en que las personas se vinculan en las organizaciones.</p>
+          <p data-reveal>Desde entonces, hemos formado un equipo de profesionales altamente calificados, con <strong>amplia trayectoria en empresas de distintos rubros</strong>, tanto a nivel nacional como latinoamericano.</p>
+          <p data-reveal>Cada integrante de nuestro equipo ha trabajado directamente en los ámbitos que hoy acompañamos, lo que nos permite <strong>conectar de forma auténtica, práctica y estratégica</strong> con nuestros clientes.</p>
+          <figure class="about__founders" data-clip>
+            <img src="assets/founders.webp" alt="Jaime Cabrera Carmine y Marco Antonio Abarca, fundadores de Human Hub" loading="lazy" width="463" height="346">
+            <figcaption>Jaime Cabrera Carmine · Marco Antonio Abarca</figcaption>
+          </figure>
         </div>
       </div>
-      <div class="services__rows">
-        <article class="row" id="svc-coaching">
-          <h3>Coaching ejecutivo y de liderazgo</h3>
-          <div class="row__body">
-            <p>Acompañamos a líderes y ejecutivos en el desarrollo de competencias clave para sus roles, en distintos niveles y contextos. Un proceso transformador, centrado en descubrir la mejor versión de cada persona.</p>
-            <ul class="terms"><li>Ejecutivos</li><li>Liderazgo</li><li>Mentoría</li></ul>
-            <details><summary>Leer más</summary>
-              <p>Contamos con un equipo de coaches y mentores con sólida experiencia en el mundo corporativo, lo que nos permite conectar profundamente con los desafíos reales del liderazgo actual.</p>
-              <p>Facilitamos espacios de reflexión para identificar oportunidades de desarrollo, mejorar el desempeño y potenciar el liderazgo desde una mirada integral, que considera tanto el rol profesional como las variables humanas que habilitan un cambio genuino y sostenible.</p>
-            </details>
-          </div>
-        </article>
-        <article class="row" id="svc-hunting">
-          <h3>Hunting y onboarding</h3>
-          <div class="row__body">
-            <p>A través de Talent Hub, empresa del grupo, buscamos, seleccionamos y acompañamos el aterrizaje de talento a escala humana, cuidando a la organización y a cada postulante.</p>
-            <ul class="terms"><li>Búsqueda</li><li>Selección</li><li>Aterrizaje</li></ul>
-            <details><summary>Leer más</summary>
-              <p>Mantenemos una comunicación cercana, oportuna y transparente en cada etapa. Buscamos no solo a la persona más competente para el cargo, sino también a aquella que se alinee genuinamente con la cultura organizacional: el éxito de una contratación está en la conexión entre valores, estilo de liderazgo y contexto.</p>
-              <p>Nuestros procesos son rigurosos, éticos y profundamente respetuosos. Además, acompañamos el aterrizaje del nuevo líder o ejecutivo con sesiones de coaching especializadas que facilitan su adaptación y aportan valor desde el primer día.</p>
-            </details>
-          </div>
-        </article>
-        <article class="row" id="svc-consultoria">
-          <h3>Consultoría estratégica en RRHH</h3>
-          <div class="row__body">
-            <p>Diseñamos intervenciones que responden a necesidades reales y concretas, sobre evidencia clara y alineadas con los objetivos definidos, para que cada acción tenga sentido dentro de la organización.</p>
-            <ul class="terms"><li>Evidencia</li><li>Intervención</li><li>Autonomía</li></ul>
-            <details><summary>Leer más</summary>
-              <p>Nos involucramos desde el vínculo humano, con una mirada cercana, respetuosa y práctica. Nuestra meta es entregar soluciones sostenibles, que no dependan de la presencia constante del consultor, sino que fortalezcan la autonomía interna de los equipos.</p>
-              <p>Una consultoría efectiva parte de comprender a fondo las condiciones reales de trabajo, tal como se viven en el día a día. Solo desde esa comprensión es posible facilitar cambios realistas, verosímiles y sostenibles en el tiempo.</p>
-            </details>
-          </div>
-        </article>
-        <article class="row" id="svc-offsite">
-          <h3>Offsite estratégicos</h3>
-          <div class="row__body">
-            <p>Espacios fuera del entorno habitual para que los equipos directivos se desconecten del ruido operativo y se reconecten con su propósito, sus desafíos y su visión compartida.</p>
-            <ul class="terms"><li>Planificación estratégica</li><li>Alineamiento</li><li>Cohesión</li></ul>
-            <details><summary>Leer más</summary>
-              <p>Los encuentros se diseñan a medida para la planificación estratégica, los alineamientos organizacionales, la revisión de cultura y propósito, y la cohesión y el fortalecimiento de equipos.</p>
-              <p>Combinamos reflexión profunda, dinámicas colaborativas y conversaciones significativas, en entornos que inspiran claridad, conexión y foco, para que los equipos vuelvan con compromisos movilizadores y acciones claras.</p>
-            </details>
-          </div>
-        </article>
-        <article class="row" id="svc-experiencias">
-          <h3>Experiencias con sentido</h3>
-          <div class="row__body">
-            <p>Experiencias participativas para que los equipos vivan y conecten con los valores de su organización de manera lúdica, significativa y memorable, al interior de la propia empresa.</p>
-            <ul class="terms"><li>Valores</li><li>Cultura</li><li>Pertenencia</li></ul>
-            <details><summary>Leer más</summary>
-              <p>Creamos espacios seguros y estimulantes donde las personas reflexionan, se vinculan, aprenden y disfrutan, favoreciendo la cohesión, el sentido de pertenencia y la alineación con la cultura corporativa.</p>
-              <p>No se trata solo de «dinámicas entretenidas», sino de experiencias con propósito que activan emociones, generan conversaciones relevantes y llevan los valores al quehacer cotidiano. Cada intervención se diseña a medida.</p>
-            </details>
-          </div>
-        </article>
-        <article class="row" id="svc-formacion">
-          <h3>Formación y aprendizaje organizacional</h3>
-          <div class="row__body">
-            <p>Experiencias de aprendizaje centradas en un Modelo de Transferencia: participación activa, aprendizaje significativo y, sobre todo, aplicación concreta en el lugar de trabajo.</p>
-            <ul class="terms"><li>Transferencia</li><li>Práctica</li><li>Reflexión</li></ul>
-            <details><summary>Leer más</summary>
-              <p>Combinamos contenido relevante, ejercitación práctica y reflexión, con herramientas digitales y metodologías activas. El aprendizaje ocurre cuando las personas pueden dialogar abiertamente, expresar dudas o resistencias en un espacio seguro, experimentar y equivocarse sin juicio, y sentir que pueden ampliar su repertorio conductual.</p>
-              <p>Más que entregar información, buscamos habilitar nuevas formas de pensar, actuar y relacionarse.</p>
-            </details>
-          </div>
-        </article>
+      <dl class="wrap stats">
+        <div class="stat" data-reveal><dt>Años de experiencia</dt><dd><span data-count="20">20</span>+</dd></div>
+        <div class="stat" data-reveal><dt>Año de fundación</dt><dd><span data-count="2018" data-from="1990">2018</span></dd></div>
+        <div class="stat" data-reveal><dt>Líneas de servicio</dt><dd><span data-count="6">6</span></dd></div>
+        <div class="stat" data-reveal><dt>Organizaciones confían en nosotros</dt><dd><span data-count="27">27</span></dd></div>
+      </dl>
+    </section>
+
+    <!-- MANIFIESTO -->
+    <section class="manifesto section">
+      <div class="wrap manifesto__grid">
+        <figure class="manifesto__img" data-clip><img src="assets/blocks.webp" alt="Equipo construyendo una torre de bloques de colores" loading="lazy" width="768" height="1024" data-speed="-0.12"></figure>
+        <p class="manifesto__text" data-words><strong>Human Hub</strong> más que un lugar, es una forma de entender el mundo. Trabajamos en una lógica de conexión neuronal, en constante relación con otros que han emprendido el mismo camino y con organizaciones que tienen el firme propósito de ser espacios de trabajo, colaboración y creación a escala&nbsp;humana.</p>
       </div>
     </section>
 
-    <!-- WORK: book-spine index of every client -->
-    <section class="shelf wrap" id="clientes" aria-labelledby="shelf-title">
-      <div class="shelf__head">
-        <h2 class="shelf__title" id="shelf-title" data-in>Han confiado en nosotros</h2>
-        <p data-in>27 organizaciones públicas y privadas, de la educación y la cultura a la industria, el retail y la salud.</p>
-      </div>
-      <ul class="spines">
-        <li class="sp-c">Universidad de Santiago de Chile<span>Educación</span></li>
-        <li class="sp-s">Laboratorios Saval<span>Salud</span></li>
-        <li class="sp-c">Teatro Municipal de Santiago<span>Cultura</span></li>
-        <li class="sp-r">NotCo<span>Alimentos</span></li>
-        <li class="sp-r">Banco Falabella<span>Banca</span></li>
-        <li class="sp-i">David del Curto<span>Agroindustria</span></li>
-        <li class="sp-i">ISA Vías<span>Infraestructura</span></li>
-        <li class="sp-r">Patagonia<span>Retail</span></li>
-        <li class="sp-r">Almasur Hoteles<span>Hotelería</span></li>
-        <li class="sp-i">Volvo<span>Automotriz</span></li>
-        <li class="sp-r">Falabella<span>Retail</span></li>
-        <li class="sp-r">Tottus<span>Retail</span></li>
-        <li class="sp-r">Family Shop<span>Retail</span></li>
-        <li class="sp-i">CMPC<span>Industria</span></li>
-        <li class="sp-s">Raven<span>Tecnología</span></li>
-        <li class="sp-i">Nuevo Pudahuel<span>Aeropuerto</span></li>
-        <li class="sp-i">Puerto San Antonio<span>Puerto</span></li>
-        <li class="sp-c">El Mercurio<span>Medios</span></li>
-        <li class="sp-s">Grünenthal<span>Salud</span></li>
-        <li class="sp-i">TPS Valparaíso<span>Puerto</span></li>
-        <li class="sp-i">Gildemeister<span>Automotriz</span></li>
-        <li class="sp-s">Spora Biotech<span>Biotecnología</span></li>
-        <li class="sp-r">PC Factory<span>Retail</span></li>
-        <li class="sp-i">SKY Airline<span>Aerolínea</span></li>
-        <li class="sp-c">GAM<span>Cultura</span></li>
-        <li class="sp-i">ISA Energía<span>Energía</span></li>
-        <li class="sp-c">MAVI UC<span>Cultura</span></li>
-      </ul>
-    </section>
-
-    <!-- CONTACT: photo strip, three-cell bar -->
-    <section class="contact" id="contacto" aria-labelledby="contact-title">
-      <div class="strip-row" aria-hidden="true">
-        <div class="strip-row__track">
-          <img src="assets/g1.webp" alt="" class="r34" loading="lazy"><img src="assets/g7.webp" alt="" class="r11" loading="lazy"><img src="assets/pomaire-artesano.webp" alt="" class="r32" loading="lazy"><img src="assets/g3.webp" alt="" class="r34" loading="lazy"><img src="assets/founders.webp" alt="" class="r11" loading="lazy"><img src="assets/hands.webp" alt="" class="r32" loading="lazy"><img src="assets/g5.webp" alt="" class="r34" loading="lazy"><img src="assets/pomaire-chanchito.webp" alt="" class="r11" loading="lazy"><img src="assets/team.webp" alt="" class="r32" loading="lazy"><img src="assets/g4.webp" alt="" class="r34" loading="lazy"><img src="assets/blocks.webp" alt="" class="r11" loading="lazy"><img src="assets/pomaire-publico.webp" alt="" class="r32" loading="lazy">
-        </div>
-      </div>
+    <!-- POR QUÉ -->
+    <section class="why section">
       <div class="wrap">
-        <h2 class="h2 contact__title" id="contact-title" data-in>Abriendo conversaciones</h2>
-        <form class="bar" id="bar" action="https://www.instagram.com/humanhubconsultores/" target="_blank" data-in>
-          <label class="cell"><span class="sr-only">Tu nombre</span><input autocomplete="name" placeholder="Tu nombre" id="f-name"></label>
-          <label class="cell"><span class="sr-only">Tu organización</span><input autocomplete="organization" placeholder="Tu organización" id="f-org"></label>
-          <button class="cell cell--go" type="submit">Conversemos</button>
-          <p class="bar__note">Escríbenos por Instagram, donde respondemos.</p>
-          <p class="bar__note bar__note--end" id="bar-msg" aria-live="polite">Abre @humanhubconsultores con tu mensaje copiado.</p>
-        </form>
+        <h2 class="h2" data-reveal>¿Por qué <span class="c-blue">Human&nbsp;Hub</span>?</h2>
+        <ol class="why__grid">
+          <li class="why__card why__card--1">
+            <h3>Socios estratégicos</h3>
+            <p>Conocemos a nuestros clientes, su negocio y su industria. Nos convertimos en sus <strong>socios estratégicos a largo plazo</strong>.</p>
+          </li>
+          <li class="why__card why__card--2">
+            <h3>Promesa cumplida</h3>
+            <p>Cumplimos la promesa de servicio, entregando <strong>procesos de desarrollo de personas</strong> permanentes en el tiempo.</p>
+          </li>
+          <li class="why__card why__card--3">
+            <h3>Hecho a medida</h3>
+            <p>Nuestra metodología y profesionales <strong>se adaptan a las situaciones particulares</strong> de cada organización.</p>
+          </li>
+          <li class="why__card why__card--4">
+            <h3>Resultados que avalan</h3>
+            <p>La experiencia e historia construida con nuestros clientes <strong>avalan los buenos resultados</strong> de los procesos.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ÁREAS -->
+    <section class="areas section">
+      <div class="areas__waves" aria-hidden="true"></div>
+      <div class="wrap">
+        <h2 class="h2 h2--light" data-reveal>Podemos <span class="c-teal">apoyarte</span> en</h2>
+        <ul class="areas__list">
+          <li data-reveal>Liderazgo y management</li>
+          <li data-reveal>Gestión del cambio</li>
+          <li data-reveal>Experiencia interna</li>
+          <li data-reveal>Gestión de indicadores</li>
+          <li data-reveal>Gestión del talento</li>
+          <li data-reveal>Estructura y procesos</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="services section" id="servicios">
+      <div class="wrap">
+        <header class="services__head">
+          <h2 class="h2" data-reveal>¿Cómo podemos <span class="c-teal">hacerlo</span>?</h2>
+          <p class="services__intro" data-reveal>Seis formas de acompañar a personas, equipos y organizaciones. Cada intervención se diseña a medida.</p>
+        </header>
+
+        <div class="stack">
+          <article class="svc" style="--i:0">
+            <div class="svc__side">
+              <span class="svc__ico"><img src="assets/ico-coaching.webp" width="300" height="284" alt="" loading="lazy"></span>
+              <h3>Coaching <small>ejecutivo y de liderazgo</small></h3>
+            </div>
+            <div class="svc__body">
+              <p>Acompañamos a líderes y ejecutivos en el desarrollo de competencias y habilidades clave para el desempeño de sus roles, en distintos niveles jerárquicos y contextos organizacionales.</p>
+              <p>Contamos con un equipo de coaches y mentores con sólida experiencia en el mundo corporativo, lo que nos permite <strong>conectar profundamente con los desafíos reales del liderazgo actual</strong>.</p>
+              <p>Entendemos el coaching como un proceso transformador, centrado en <strong>descubrir la mejor versión de cada persona</strong>: espacios de reflexión para identificar oportunidades de desarrollo, mejorar el desempeño y potenciar el liderazgo desde una mirada integral.</p>
+            </div>
+          </article>
+
+          <article class="svc" style="--i:1">
+            <div class="svc__side">
+              <span class="svc__ico"><img src="assets/ico-hunting.webp" width="278" height="278" alt="" loading="lazy"></span>
+              <h3>Hunting <small>y onboarding · Talent Hub</small></h3>
+            </div>
+            <div class="svc__body">
+              <p>A través de <strong>Talent Hub</strong>, empresa del grupo Human Hub, desarrollamos procesos de búsqueda, selección y aterrizaje de talento a escala humana, cuidando tanto a nuestros clientes como a cada persona postulante, con una comunicación cercana, oportuna y transparente.</p>
+              <p>Buscamos no solo a la persona más competente para el cargo, sino también a aquella que <strong>se alinee genuinamente con la cultura organizacional</strong>. El verdadero éxito de una contratación está en la conexión entre valores, estilo de liderazgo y contexto.</p>
+              <p>Procesos rigurosos, éticos y profundamente respetuosos. Además, <strong>acompañamos el aterrizaje del nuevo líder</strong> con sesiones de coaching que aportan valor desde el primer día.</p>
+            </div>
+          </article>
+
+          <article class="svc" style="--i:2">
+            <div class="svc__side">
+              <span class="svc__ico"><img src="assets/ico-consultoria.webp" width="300" height="283" alt="" loading="lazy"></span>
+              <h3>Consultoría <small>estratégica en RRHH</small></h3>
+            </div>
+            <div class="svc__body">
+              <p>Diseñamos intervenciones estratégicas que responden a las <strong>necesidades reales y concretas</strong> de las organizaciones, sobre evidencia clara y alineada con los objetivos definidos.</p>
+              <p>Nos involucramos desde el vínculo humano, con una mirada cercana, respetuosa y práctica. Nuestra meta: soluciones sostenibles que <strong>fortalezcan la autonomía interna de los equipos</strong>, sin depender de la presencia constante del consultor.</p>
+              <p>Una consultoría efectiva parte de comprender a fondo las condiciones reales de trabajo. Solo así es posible facilitar <strong>cambios realistas, verosímiles y sostenibles</strong> en el tiempo.</p>
+            </div>
+          </article>
+
+          <article class="svc" style="--i:3">
+            <div class="svc__side">
+              <span class="svc__ico"><img src="assets/ico-offsite.webp" width="300" height="283" alt="" loading="lazy"></span>
+              <h3>Offsite <small>estratégicos</small></h3>
+            </div>
+            <div class="svc__body">
+              <p>Espacios fuera del entorno habitual para que equipos directivos se <strong>desconecten del ruido operativo y se reconecten con lo esencial</strong>: su propósito, sus desafíos y su visión compartida. Diseñados a medida para:</p>
+              <ul class="ticks">
+                <li>Planificación estratégica</li>
+                <li>Alineamientos organizacionales</li>
+                <li>Revisión de cultura y propósito</li>
+                <li>Cohesión y fortalecimiento de equipos</li>
+              </ul>
+              <p>Combinamos reflexión profunda, dinámicas colaborativas y conversaciones significativas para que los equipos vuelvan con <strong>compromisos movilizadores y acciones claras</strong>.</p>
+            </div>
+          </article>
+
+          <article class="svc" style="--i:4">
+            <div class="svc__side">
+              <span class="svc__ico"><img src="assets/ico-experiencias.webp" width="281" height="244" alt="" loading="lazy"></span>
+              <h3>Experiencias <small>con sentido</small></h3>
+            </div>
+            <div class="svc__body">
+              <p>Experiencias participativas para que los equipos vivan y conecten con los valores de su organización de manera <strong>lúdica, significativa y memorable</strong>.</p>
+              <p>Realizadas al interior de las empresas, crean espacios seguros donde las personas reflexionan, se vinculan, aprenden y disfrutan, favoreciendo la cohesión, el sentido de pertenencia y la alineación cultural.</p>
+              <p>No se trata solo de “dinámicas entretenidas”, sino de <strong>experiencias con propósito</strong> que activan emociones, generan conversaciones relevantes y llevan los valores al quehacer cotidiano.</p>
+            </div>
+          </article>
+
+          <article class="svc" style="--i:5">
+            <div class="svc__side">
+              <span class="svc__ico"><img src="assets/ico-formacion.webp" width="296" height="264" alt="" loading="lazy"></span>
+              <h3>Formación <small>y aprendizaje organizacional</small></h3>
+            </div>
+            <div class="svc__body">
+              <p>Experiencias de aprendizaje centradas en un <strong>Modelo de Transferencia</strong>: participación activa, aprendizaje significativo y aplicación concreta en el lugar de trabajo. El verdadero aprendizaje ocurre cuando las personas:</p>
+              <ul class="ticks">
+                <li>Pueden dialogar abiertamente sobre lo que están aprendiendo.</li>
+                <li>Expresan dudas, temores o resistencias en un espacio seguro.</li>
+                <li>Experimentan, se equivocan y practican sin juicio.</li>
+                <li>Sienten que pueden ampliar o transformar su repertorio conductual.</li>
+              </ul>
+              <p>Más que entregar información, buscamos <strong>habilitar nuevas formas de pensar, actuar y relacionarse</strong>.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section class="gallery" aria-label="Galería">
+      <div class="gallery__track">
+        <div class="gallery__intro">
+          <h2 class="h2 h2--light">Abriendo conversaciones</h2>
+        </div>
+        <figure class="gallery__item" data-reveal><img src="assets/hands.webp" width="1600" height="1067" alt="Manos moldeando una pieza de greda" loading="lazy"></figure>
+        <figure class="gallery__item" data-reveal><img src="assets/g1.webp" width="307" height="410" alt="Equipo armando una estructura con bloques" loading="lazy"></figure>
+        <figure class="gallery__item" data-reveal><img src="assets/g3.webp" width="302" height="402" alt="Facilitadora dirigiendo una sesión" loading="lazy"></figure>
+        <figure class="gallery__item" data-reveal><img src="assets/g5.webp" width="360" height="480" alt="Participantes trabajando sobre un papelógrafo" loading="lazy"></figure>
+        <figure class="gallery__item" data-reveal><img src="assets/g7.webp" width="524" height="393" alt="Equipo abrazado en círculo en la playa" loading="lazy"></figure>
+        <figure class="gallery__item" data-reveal><img src="assets/g4.webp" width="264" height="395" alt="Dos participantes sonriendo en una actividad" loading="lazy"></figure>
+        <figure class="gallery__item" data-reveal><img src="assets/g6.webp" width="297" height="395" alt="Trabajo colaborativo con tablet y papel" loading="lazy"></figure>
+        <figure class="gallery__item" data-reveal><img src="assets/g2.webp" width="302" height="402" alt="Persona entregando una tarjeta" loading="lazy"></figure>
+      </div>
+    </section>
+
+    <!-- HUBERS -->
+    <section class="hubers section" id="hubers">
+      <div class="wrap hubers__grid">
+        <div>
+          <h2 class="h2 h2--light hubers__title" data-reveal><span>Somos</span> Hubers</h2>
+          <p data-reveal>Los Hubers somos un equipo de consultores y coaches especializados en el diseño e implementación de <strong>proyectos integrales de desarrollo del Capital Humano</strong>, con experiencia comprobada en potenciar el talento individual y colectivo para generar transformaciones reales en las organizaciones.</p>
+          <p data-reveal>Creamos valor a través de un servicio <strong>altamente técnico, eficiente y confiable</strong>, garantizando la calidad en cada etapa de los procesos, tanto a nivel individual como grupal.</p>
+          <p data-reveal>Más allá de la experiencia, creemos en construir <strong>relaciones humanas, honestas y abiertas</strong> con clientes, colaboradores y aliados. Porque los resultados sostenibles nacen de vínculos genuinos y un compromiso compartido.</p>
+        </div>
+        <figure class="hubers__img" data-clip><img src="assets/team.webp" alt="Equipo Human Hub celebrando alrededor de una mesa" loading="lazy" width="980" height="560" data-speed="-0.08"></figure>
+      </div>
+    </section>
+
+    <!-- CLIENTES -->
+    <section class="clients section" id="clientes">
+      <div class="wrap"><h2 class="h2 h2--light" data-reveal>Han confiado en <span class="c-orange">nosotros</span>…</h2></div>
+      <div class="wrap"><picture><source media="(max-width: 620px)" srcset="assets/clients-m.webp" width="900" height="1430"><img class="clients__logos" data-reveal src="assets/clients.webp" width="1600" height="745" loading="lazy" alt="Logos de clientes: Universidad de Santiago de Chile, Saval, Municipal de Santiago, NotCo, Banco Falabella, David del Curto, ISA Vías, Patagonia, Almasur Hoteles, Volvo, Falabella, Tottus, Family Shop, CMPC, Raven, Nuevo Pudahuel, Puerto San Antonio, El Mercurio, Grünenthal, TPS Valparaíso, Gildemeister, Spora, Factory, SKY, GAM, ISA Energía y MAVI UC"></picture></div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contacto">
+      <div class="hero__bg" aria-hidden="true"><img src="assets/hero-bg.webp" alt="" loading="lazy"></div>
+      <div class="wrap cta__inner">
+        <img src="assets/hh.webp" alt="" class="cta__mark" width="120" height="102" data-reveal>
+        <h2 class="cta__title" data-reveal>Abriendo conversaciones</h2>
+        <p data-reveal>¿Tu organización enfrenta un desafío de personas, liderazgo o cultura? Conversemos.</p>
+        <a class="btn btn--light" data-reveal href="https://www.instagram.com/humanhubconsultores/" target="_blank" rel="noopener">Escríbenos en Instagram · @humanhubconsultores</a>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER: a footer of tiles -->
-  <footer class="foot">
-    <div class="foot__board">
-      <div class="tile tile--statement">
-        <p class="tile__big">Consultoría estratégica centrada en las personas.</p>
-        <p class="tile__small">© 2026 Human Hub Consulting. Talent Hub es una empresa del grupo Human Hub.</p>
-      </div>
-      <nav class="tile tile--nav" aria-label="Pie de página">
-        <a href="#hubers">Hubers</a><a href="#servicios">Servicios</a><a href="#clientes">Clientes</a><a href="#contacto">Contacto</a>
-      </nav>
-      <div class="tile tile--time">
-        <p>Chile</p>
-        <p class="tile__big"><time id="clock">—</time></p>
-        <p class="tile__small">hora local</p>
-      </div>
-      <div class="tile tile--mail">
-        <p>Instagram</p>
-        <a class="tile__handle" href="https://www.instagram.com/humanhubconsultores/" target="_blank" rel="noopener">@humanhubconsultores</a>
-      </div>
-      <div class="tile tile--mark"><p class="wordmark" aria-hidden="true">Human Hub</p></div>
-      <a class="tile tile--go" href="https://ig.me/m/humanhubconsultores" target="_blank" rel="noopener">
-        <span class="tile__big">Abramos una conversación</span>
-        <svg viewBox="0 0 48 48" width="48" height="48" aria-hidden="true"><path d="M8 40 40 8M14 8h26v26" fill="none" stroke="currentColor" stroke-width="4"/></svg>
-      </a>
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <img src="assets/logo.webp" alt="Human Hub" width="120" height="41">
+      <p>Consultoría estratégica centrada en las personas.<br>Talent Hub es una empresa del grupo Human Hub.</p>
+      <p><a href="https://www.instagram.com/humanhubconsultores/" target="_blank" rel="noopener">@humanhubconsultores</a><br>© 2026 Human Hub Consulting</p>
     </div>
-    <p class="credits">Fotos de Pomaire: <a href="https://commons.wikimedia.org/w/index.php?curid=32276216">«Hombre trabajando greda en Pomaire»</a> de Antocavi, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>; <a href="https://commons.wikimedia.org/w/index.php?curid=16675792">«Artesano de la greda en Pomaire»</a> de Andrés Molina, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>, recortada; <a href="https://commons.wikimedia.org/w/index.php?curid=38850321">«Artesanía de greda en Pomaire 01»</a> y <a href="https://commons.wikimedia.org/w/index.php?curid=38850320">«Artesanía de greda en Pomaire»</a> de Marco Antonio Correa Flores, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/w/index.php?curid=6071953">«Cochon pomaire 108»</a> de Penarc, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>; todas vía Wikimedia Commons.</p>
   </footer>
 
-  <script src="main.js?v=5"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="main.js?v=6"></script>
 </body>
 </html>
