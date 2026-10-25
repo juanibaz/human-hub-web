@@ -28,22 +28,11 @@ if (window.gsap && window.ScrollTrigger && reduce) {
   // Reduced motion: no movement, just a short cross-fade as sections arrive.
   gsap.registerPlugin(ScrollTrigger);
   gsap.set('[data-reveal]', { opacity: 0 });
-  ScrollTrigger.batch('[data-reveal]', { start: 'top 92%', once: true, onEnter: (els) => gsap.to(els, { opacity: 1, duration: 0.4 }) });
+  const fade = (els) => gsap.to(els, { opacity: 1, duration: 0.4 });
+  ScrollTrigger.batch('[data-reveal]', { start: 'top bottom', onEnter: fade, onEnterBack: fade });
 } else if (window.gsap && window.ScrollTrigger) {
   gsap.registerPlugin(ScrollTrigger);
   const mm = gsap.matchMedia();
-
-  // Created first: its pin spacer shifts everything below it, and ScrollTriggers refresh in
-  // creation order, so the later ones (Hubers, Clientes, CTA) must measure after it.
-  mm.add('(min-width: 821px)', () => {
-    // Pinned horizontal gallery.
-    const track = document.querySelector('.gallery__track');
-    gsap.to(track, {
-      x: () => -(track.scrollWidth - innerWidth),
-      ease: 'none',
-      scrollTrigger: { trigger: '.gallery', pin: true, scrub: 0.6, start: 'top top', end: () => '+=' + (track.scrollWidth - innerWidth), invalidateOnRefresh: true },
-    });
-  });
 
   // Hero: split title into masked words.
   const title = document.querySelector('[data-split]');
@@ -58,9 +47,11 @@ if (window.gsap && window.ScrollTrigger && reduce) {
   // Generic fade-up reveals (hidden up front so they don't flash before entering).
   gsap.set('[data-reveal]', { y: 48, opacity: 0 });
   ScrollTrigger.batch('[data-reveal]', {
-    start: 'top 88%',
-    once: true,
+    start: 'top bottom-=40', // as soon as it peeks in, so the screen below the hero is never blank
+    // Revealed going down (onEnter) and also going up (onEnterBack): a visitor who lands mid-page
+    // (deep link, reload) never "entered" the sections above, and they would stay hidden.
     onEnter: (els) => gsap.to(els, { y: 0, opacity: 1, duration: 1.1, ease: 'expo.out', stagger: 0.08 }),
+    onEnterBack: (els) => gsap.to(els, { y: 0, opacity: 1, duration: 0.6, ease: 'expo.out' }),
   });
 
   // Image clip reveals.

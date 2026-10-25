@@ -69,7 +69,7 @@ figure { margin: 0; }
 .nav__toggle { display: none; }
 
 /* Hero */
-.hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; color: var(--white); background: var(--ink); overflow: hidden; isolation: isolate; }
+.hero { position: relative; display: flex; align-items: flex-end; color: var(--white); background: var(--ink); overflow: hidden; isolation: isolate; }
 .hero__bg { position: absolute; inset: 0; z-index: -2; }
 .hero__bg img { width: 100%; height: 100%; object-fit: cover; }
 .hero__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,22,48,.35), rgba(11,22,48,.1) 40%, rgba(11,22,48,.85)); }
@@ -154,16 +154,14 @@ figure { margin: 0; }
 .ticks li { padding-left: 28px; position: relative; color: var(--text); }
 .ticks li::before { content: ""; position: absolute; left: 0; top: .55em; width: 14px; height: 8px; border-left: 2px solid var(--red); border-bottom: 2px solid var(--red); transform: rotate(-45deg); }
 
-/* Gallery: horizontal (pinned on desktop via JS) */
-.gallery { background: var(--ink); overflow: hidden; }
-.gallery__track { display: flex; align-items: center; gap: 20px; height: 100svh; padding: 0 max(16px, calc((100% - 1240px) / 2)); width: max-content; }
-.gallery__intro { width: min(640px, 80vw); flex: none; padding-right: 40px; }
+/* Gallery: a still photo wall, each picture at its own ratio (no crops) */
+.gallery { background: var(--ink); padding: clamp(80px, 12vw, 160px) 0 0; } /* the Hubers section below brings its own top space */
+.gallery__track { width: min(1240px, 100% - 32px); margin-inline: auto; columns: 4 220px; column-gap: 20px; }
+.gallery__intro { column-span: all; margin-bottom: clamp(32px, 5vw, 56px); }
 .gallery__intro .h2 { margin: 0; font-size: clamp(2.2rem, 4.6vw, 4.6rem); }
-.gallery__item { flex: none; height: 58vh; aspect-ratio: 3/4; border-radius: var(--radius); overflow: hidden; }
-.gallery__item--wide { aspect-ratio: 4/3; }
-.gallery__item:nth-child(even) { transform: translateY(6vh); }
-.gallery__item img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
-.gallery__item:hover img { transform: scale(1.06); }
+.gallery__item { break-inside: avoid; margin: 0 0 20px; border-radius: var(--radius); overflow: hidden; }
+.gallery__item img { width: 100%; transition: transform 1.2s var(--ease); }
+.gallery__item:hover img { transform: scale(1.04); }
 
 /* Hubers */
 .hubers { background: linear-gradient(180deg, var(--ink), var(--ink-2)); color: rgba(255,255,255,.78); }
@@ -216,12 +214,8 @@ figure { margin: 0; }
   .stat:nth-child(3) { padding-left: 0; border-left: 0; }
   .areas__list { grid-template-columns: 1fr; }
   .hero__scroll { display: none; }
-  /* Gallery becomes a native swipe strip */
-  .gallery__track { height: auto; padding-block: 80px; overflow-x: auto; width: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; scrollbar-width: none; }
-  .gallery__track::-webkit-scrollbar { display: none; }
-  .gallery__intro { width: 78vw; scroll-snap-align: start; } /* without it, mandatory snapping skips the title */
-  .gallery__item { height: 52vh; scroll-snap-align: center; }
-  .gallery__item:nth-child(even) { transform: none; }
+  .gallery__track { columns: 2; column-gap: 12px; }
+  .gallery__item { margin-bottom: 12px; }
 }
 @media (max-width: 540px) {
   .why__grid { grid-template-columns: 1fr; }
