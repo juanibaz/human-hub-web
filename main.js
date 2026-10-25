@@ -38,10 +38,10 @@ if (window.gsap && window.ScrollTrigger && reduce) {
   const title = document.querySelector('[data-split]');
   title.innerHTML = title.innerHTML.split(' ').map((w) => `<span class="w"><span>${w}</span></span>`).join(' ');
   gsap.timeline({ defaults: { ease: 'expo.out' } })
-    .from('.hero__bg img', { scale: 1.25, duration: 2.4 }, 0)
-    .from('.hero__title .w > span', { yPercent: 110, duration: 1.4, stagger: 0.08 }, 0.2)
-    .from('.hero__foot', { y: 24, opacity: 0, duration: 1.2 }, 0.7)
-    .from('.nav', { opacity: 0, duration: 1.2, clearProps: 'opacity' }, 0.9); // never transform .nav: it breaks its fixed mobile menu
+    .from('.hero__bg img', { scale: 1.25, duration: 1.4 }, 0)
+    .from('.hero__title .w > span', { yPercent: 110, duration: 0.8, stagger: 0.05 }, 0.1)
+    .from('.hero__foot', { y: 24, opacity: 0, duration: 0.7 }, 0.35)
+    .from('.nav', { opacity: 0, duration: 0.6, clearProps: 'opacity' }, 0.4); // never transform .nav: it breaks its fixed mobile menu
   gsap.to('.hero__inner', { yPercent: -18, opacity: 0.2, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
 
   // Generic fade-up reveals (hidden up front so they don't flash before entering).
@@ -50,13 +50,13 @@ if (window.gsap && window.ScrollTrigger && reduce) {
     start: 'top bottom-=40', // as soon as it peeks in, so the screen below the hero is never blank
     // Revealed going down (onEnter) and also going up (onEnterBack): a visitor who lands mid-page
     // (deep link, reload) never "entered" the sections above, and they would stay hidden.
-    onEnter: (els) => gsap.to(els, { y: 0, opacity: 1, duration: 1.1, ease: 'expo.out', stagger: 0.08 }),
-    onEnterBack: (els) => gsap.to(els, { y: 0, opacity: 1, duration: 0.6, ease: 'expo.out' }),
+    onEnter: (els) => gsap.to(els, { y: 0, opacity: 1, duration: 0.6, ease: 'expo.out', stagger: 0.06 }),
+    onEnterBack: (els) => gsap.to(els, { y: 0, opacity: 1, duration: 0.4, ease: 'expo.out' }),
   });
 
   // Image clip reveals.
   gsap.utils.toArray('[data-clip]').forEach((el) => {
-    gsap.from(el, { clipPath: 'inset(18% 18% 18% 18% round 20px)', duration: 1.6, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
+    gsap.from(el, { clipPath: 'inset(18% 18% 18% 18% round 20px)', duration: 0.8, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
   });
 
   // Parallax inside clipped frames.
@@ -68,7 +68,7 @@ if (window.gsap && window.ScrollTrigger && reduce) {
   gsap.utils.toArray('[data-count]').forEach((el) => {
     const to = +el.dataset.count, obj = { v: +(el.dataset.from || 0) };
     el.textContent = obj.v;
-    gsap.to(obj, { v: to, duration: 2, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%' }, onUpdate: () => (el.textContent = Math.round(obj.v)) });
+    gsap.to(obj, { v: to, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%' }, onUpdate: () => (el.textContent = Math.round(obj.v)) });
   });
 
   // Manifesto: words light up as you scroll.
@@ -87,7 +87,7 @@ if (window.gsap && window.ScrollTrigger && reduce) {
   gsap.from(words, { opacity: 0.15, stagger: 0.05, ease: 'none', scrollTrigger: { trigger: text, start: 'top 80%', end: 'bottom 45%', scrub: true } });
 
   // Why cards: tilt in.
-  gsap.from('.why__card', { y: 80, rotate: (i) => (i % 2 ? 3 : -3), opacity: 0, duration: 1.2, ease: 'expo.out', stagger: 0.1, scrollTrigger: { trigger: '.why__grid', start: 'top 85%' } });
+  gsap.from('.why__card', { y: 80, rotate: (i) => (i % 2 ? 3 : -3), opacity: 0, duration: 0.7, ease: 'expo.out', stagger: 0.06, scrollTrigger: { trigger: '.why__grid', start: 'top 85%' } });
 
   mm.add('(min-width: 1001px)', () => {
     // Stacked service cards: each card recedes as the next one covers it.
