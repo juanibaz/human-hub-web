@@ -56,7 +56,7 @@ if (window.gsap && window.ScrollTrigger && reduce) {
 
   // Image clip reveals.
   gsap.utils.toArray('[data-clip]').forEach((el) => {
-    gsap.from(el, { clipPath: 'inset(18% 18% 18% 18% round 20px)', duration: 1.6, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
+    gsap.from(el, { clipPath: 'inset(18% 18% 18% 18% round 20px)', duration: 2.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
   });
 
   // Parallax inside clipped frames.

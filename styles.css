@@ -160,6 +160,33 @@ figure { margin: 0; }
 .ticks li { padding-left: 1.75rem; position: relative; color: var(--text); }
 .ticks li::before { content: ""; position: absolute; left: 0; top: .55em; width: 14px; height: 8px; border-left: 2px solid var(--red); border-bottom: 2px solid var(--red); transform: rotate(-45deg); }
 
+/* Orienta: AI scheduling, a featured dark card right after the services */
+.orienta { padding-top: 0; } /* the services section above already brings the space */
+.orienta__card { position: relative; display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(2.5rem, 5vw, 5rem); align-items: center; padding: clamp(2rem, 5vw, 4.5rem); background: radial-gradient(60% 70% at 95% 0%, rgba(23,165,151,.28), transparent 70%), var(--ink); color: rgba(255,255,255,.82); border-radius: 28px; overflow: hidden; }
+.orienta__card::before { content: ""; position: absolute; inset: 0 0 auto; height: 6px; background: var(--spectrum); }
+.orienta__badge, .orienta__avatar { display: grid; place-items: center; border-radius: 50%; background: var(--teal); color: var(--white); flex: none; }
+.orienta__badge { width: 4rem; height: 4rem; margin-bottom: 1.5rem; box-shadow: 0 0 0 8px rgba(23,165,151,.18); }
+.orienta__badge svg { width: 62%; height: 62%; }
+.orienta__avatar { width: 2.5rem; height: 2.5rem; }
+.orienta__avatar svg { width: 64%; height: 64%; }
+.orienta__head { display: flex; align-items: center; gap: .75rem; padding-bottom: 1rem; margin-bottom: .25rem; border-bottom: 1px solid rgba(255,255,255,.12); font-size: .85rem; line-height: 1.3; color: rgba(255,255,255,.65); }
+.orienta__head strong { display: block; font: 700 1rem var(--display); color: var(--white); }
+.orienta__title { margin-bottom: 1.25rem; }
+.orienta__lead { font-size: 1.15rem; max-width: 44ch; }
+.orienta__steps { list-style: none; counter-reset: step; margin: 2rem 0 2.25rem; padding: 0; display: grid; gap: 1.25rem; }
+.orienta__steps li { counter-increment: step; position: relative; padding-left: 3.25rem; }
+.orienta__steps li::before { content: counter(step); position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.3); font: 700 .95rem var(--display); color: var(--white); }
+.orienta__steps strong { display: block; color: var(--white); font-family: var(--display); }
+.orienta__note { margin: 1rem 0 0; font-size: .95rem; color: rgba(255,255,255,.65); }
+.orienta__note a { color: var(--white); }
+.orienta__demo { display: flex; flex-direction: column; gap: .75rem; padding: clamp(1.25rem, 2.5vw, 1.75rem); background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); }
+.msg { max-width: 85%; margin: 0; padding: .75rem 1rem; border-radius: 16px 16px 16px 4px; background: rgba(255,255,255,.1); color: var(--white); font-size: .95rem; line-height: 1.45; }
+.msg--me { align-self: flex-end; border-radius: 16px 16px 4px 16px; background: var(--teal-ink); }
+.msg--coach { display: grid; gap: .25rem; background: var(--white); color: var(--ink); }
+.msg--coach small { color: var(--muted); font-size: .8rem; }
+.msg--coach strong { font-family: var(--display); }
+.msg__btn { justify-self: start; margin-top: .5rem; padding: .45em 1em; border-radius: 999px; background: var(--ink); color: var(--white); font: 600 .8rem var(--display); }
+
 /* Gallery: a still photo wall, each picture at its own ratio (no crops) */
 .gallery { background: var(--ink); padding: clamp(5rem, 12vw, 10rem) 0 0; } /* the Hubers section below brings its own top space */
 .gallery__track { width: min(1240px, 100% - 2rem); margin-inline: auto; columns: 4 220px; column-gap: 1.25rem; }
@@ -227,7 +254,7 @@ figure { margin: 0; }
   .nav.is-open .nav__menu { opacity: 1; visibility: visible; scale: 1; transition: opacity .35s, scale .35s var(--ease); } /* visible at once, so focus can move into it */
   /* transform/backdrop-filter would make the fixed menu size itself to the bar instead of the screen */
   .nav.is-open { background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; transform: none; }
-  .about__grid, .manifesto__grid, .hubers__grid { grid-template-columns: 1fr; }
+  .about__grid, .manifesto__grid, .hubers__grid, .orienta__card { grid-template-columns: 1fr; }
   .about__title { position: static; }
   .manifesto__img { aspect-ratio: 4/3; }
   .stats { grid-template-columns: repeat(2, 1fr); }
